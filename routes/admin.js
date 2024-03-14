@@ -28,7 +28,8 @@ router.post("/package", async (req, res) => {
 });
 
 router.put("/package", async (req, res) => {
-      const response = await Package.findByIdAndUpdate(Id,req.body)
+  const {Id} = req.query;
+  const response = await Package.findByIdAndUpdate(Id,req.body)
       if(response){
         res.status(200).json({ response, message: 'Image updated successfully' })
       }else{
@@ -39,7 +40,8 @@ router.put("/package", async (req, res) => {
 
 
 router.delete("/package", async (req, res) => {;
-      const response = await Package.findByIdAndDelete(Id)
+  const {Id} = req.query;
+  const response = await Package.findByIdAndDelete(Id)
       if(response){
         res.status(200).json({ response, message: 'Package Delete successfully' })
       }else{
@@ -55,6 +57,7 @@ router.get("/blog", async (req, res) => {
 });
 
 router.post("/blog", async (req, res) => {
+  const {heading,dataUrl,content} = req.body;
     const blog = await new Blog({
         heading,
         image:dataUrl,
@@ -70,6 +73,7 @@ router.post("/blog", async (req, res) => {
 });
 
 router.put("/blog", async (req, res) => {;
+  const {Id} = req.query;
       const response = await Blog.findByIdAndUpdate(Id,req.body)
       if(response){
         res.status(200).json({ response, message: 'Image updated successfully' })
@@ -81,7 +85,7 @@ router.put("/blog", async (req, res) => {;
 
 
 router.delete("/blog", async (req, res) => {;
-  const {Id} = req.query
+  const {Id} = req.query;
       const response = await Blog.findByIdAndDelete(Id)
       if(response){
         res.status(200).json({ response, message: 'Blog Delete successfully' })
