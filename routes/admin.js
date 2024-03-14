@@ -81,6 +81,7 @@ router.put("/blog", async (req, res) => {;
 
 
 router.delete("/blog", async (req, res) => {;
+  const {Id} = req.query
       const response = await Blog.findByIdAndDelete(Id)
       if(response){
         res.status(200).json({ response, message: 'Blog Delete successfully' })
